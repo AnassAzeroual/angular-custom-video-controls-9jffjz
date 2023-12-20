@@ -1,0 +1,23 @@
+<hello class="position-absolute" name="{{ name }}"></hello>
+<p>
+  Start editing to see some magic happen :)
+</p>
+<div id='player'>
+		<video id='video-element' (timeupdate)="updateProgressBar()" #player>
+			<source src='https://www.w3schools.com/html/mov_bbb.mp4' type='video/mp4'>
+			<source src='https://www.w3schools.com/html/mov_bbb.ogg' type='video/ogg'>
+		</video>
+		<div id='controls'>
+      <!-- <span style="color: red" *ngIf="player.duration">current time {{ player.currentTime }} and duration {{player.duration}}</span> -->
+      <button id='btnPlayPause' class='play' title='play' accesskey="P" (click)='playPauseVideo();' #btnPlayPause><i class="fas fa-play"></i></button>
+      <span *ngIf="player.duration">{{player.currentTime|secondsToHours}}/{{player.duration|secondsToHours }}</span>
+      <div class="stop">
+      <input type="range" class="" (change)="setVolume()" id="volume-bar" title="volume" min="0" max="1" step="0.1" value="1" #volumeBar>
+      <button id='btnMute' class='mute' title='mute' (click)='muteVolume();' #btnMute><i class="fas fa-volume-mute"></i></button>
+      <button id='btnStop' class='' title='stop' accesskey="X" (click)='stopVideo();'><i class="fas fa-stop"></i></button>
+      <button id='btnReplay' class='replay' title='replay' accesskey="R" (click)='replayVideo();'><i class="fas fa-redo-alt"></i></button>
+      </div>
+			<progress id='progress-bar' (click)="seek($event)" min='0' max='100' value='1' #progressBar>0% played</progress>	
+		</div>
+	</div>	
+  <div style="clear:both"></div>
